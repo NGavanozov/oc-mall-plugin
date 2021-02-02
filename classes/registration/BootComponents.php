@@ -24,6 +24,7 @@ use OFFLINE\Mall\Components\ShippingMethodSelector;
 use OFFLINE\Mall\Components\SignUp;
 use OFFLINE\Mall\Components\WishlistButton;
 use OFFLINE\Mall\Components\Wishlists;
+use OFFLINE\Mall\Components\Categories;
 use OFFLINE\Mall\FormWidgets\Price;
 use OFFLINE\Mall\FormWidgets\PropertyFields;
 
@@ -54,6 +55,7 @@ trait BootComponents
             Wishlists::class                  => 'wishlists',
             WishlistButton::class             => 'wishlistButton',
             ProductReviews::class             => 'productReviews',
+            Categories::class                 => 'Categories',
         ];
     }
 

@@ -16,6 +16,7 @@ use OFFLINE\Mall\Classes\Traits\CustomFields;
 use OFFLINE\Mall\Classes\Traits\FilteredTaxes;
 use OFFLINE\Mall\Classes\Traits\HashIds;
 use OFFLINE\Mall\Classes\Traits\Images;
+use OFFLINE\Mall\Classes\Traits\Videos;
 use OFFLINE\Mall\Classes\Traits\PriceAccessors;
 use OFFLINE\Mall\Classes\Traits\ProductPriceAccessors;
 use OFFLINE\Mall\Classes\Traits\PropertyValues;
@@ -34,6 +35,7 @@ class Product extends Model
     use Sluggable;
     use UserSpecificPrice;
     use Images;
+    use Videos;
     use CustomFields;
     use PropertyValues;
     use HashIds;
@@ -41,7 +43,7 @@ class Product extends Model
     use PriceAccessors;
     use ProductPriceAccessors;
     use StockAndQuantity;
-    use FilteredTaxes;
+    use FilteredTaxes;    
 
     const MORPH_KEY = 'mall.product';
 

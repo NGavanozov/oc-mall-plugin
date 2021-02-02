@@ -321,6 +321,7 @@ return [
         'review_category' => 'Review category',
         'title' => 'Title',
         'version' => 'Version',
+        'video' => 'Видео',
     ],
     'variant' => [
         'method' => [
@@ -1020,6 +1021,10 @@ return [
             ],
             'no_parent' => 'Show all categories',
             'by_slug' => 'Use category in url as parent',
+            'show_count' => [
+                'title' => 'Show count',
+                'description' => 'Show count of included products',
+            ],
         ],
         'cartSummary' => [
             'details' => [

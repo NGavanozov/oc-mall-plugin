@@ -10,7 +10,7 @@ class ImageSet extends Model
 
     const MORPH_KEY = 'mall.imageset';
 
-    public $with = ['images'];
+    public $with = ['images','videos'];
     public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
     public $translatable = [
         'name'
@@ -23,6 +23,7 @@ class ImageSet extends Model
     ];
     public $attachMany = [
         'images' => File::class,
+        'videos' => File::class,
     ];
     public $belongsTo = [
         'product' => Product::class,

@@ -495,7 +495,7 @@ class Products extends MallComponent
      */
     protected function productIncludes(): array
     {
-        return ['translations', 'image_sets.images', 'customer_group_prices', 'additional_prices'];
+        return ['translations', 'image_sets.images', 'image_sets.videos', 'customer_group_prices', 'additional_prices'];
     }
 
     /**

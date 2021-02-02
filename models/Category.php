@@ -254,4 +254,10 @@ class Category extends Model
 
         return $groups ?? new Collection();
     }
+
+    // products count attribute
+    public function getItemsCountAttribute()
+    {
+        return $this->products()->count();
+    }
 }

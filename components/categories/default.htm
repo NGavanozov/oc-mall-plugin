@@ -1,0 +1,15 @@
+{% set categories = __SELF__.categories %}
+
+{% if categories.count > 0 %}
+    <h4>Categories</h4>
+    <ul>
+    {% for category in categories %}
+        {% if category.items_count %}
+        <li>
+            <a href="{{ category.url }}">{{ category.name }}</a>
+            {% if showCount %} <span class="badge">{{ category.items_count }}</span>{% endif %}
+        </li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+{% endif %}

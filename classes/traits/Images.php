@@ -70,4 +70,5 @@ trait Images
             ? $this->image_sets
             : optional($this->image_sets->sortByDesc('is_main_set'))->first();
     }
+
 }

@@ -1,13 +1,16 @@
 fields:
+
     is_main_set:
         label: 'offline.mall::lang.image_sets.is_main_set'
         comment: 'offline.mall::lang.image_sets.is_main_set_comment'
         span: left
         type: switch
+
     name:
         label: 'offline.mall::lang.common.name'
         span: right
         type: text
+
     images:
         label: 'offline.mall::lang.common.images'
         mode: image
@@ -19,3 +22,10 @@ fields:
             extension: auto
         span: full
         type: fileupload
+
+    videos:
+        label: 'offline.mall::lang.common.videos'               
+        span: full
+        type: fileupload
+        mode: file        
+        useCaption: true 
