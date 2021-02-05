@@ -363,4 +363,11 @@
     - '!!! Switched to Stripe Intents API (supports Strong Customer Authentication and 3D Secure payment flows). Test this update with your Stripe setup before deploying it in production! (Changelog: https://tinyurl.com/y79ane6j)'
 1.13.1:
     - 'Bugfix release'
-
+1.14.1:
+    - Added video files to image_sets, and product attribute.
+1.14.2:
+    - Create table for media_sets.
+    - create_offline_mall_media_sets.php
+1.14.3:
+    - Add media to product variants.
+    - add_media_set_column_to_prodict_variants.php

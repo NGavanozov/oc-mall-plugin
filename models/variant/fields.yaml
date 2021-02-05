@@ -97,6 +97,25 @@ tabs:
             thumbOptions:
                 mode: crop
                 extension: auto
+
+        media_set_id:
+            tab: 'offline.mall::lang.common.attachments'
+            label: 'offline.mall::lang.common.medias'
+            span: auto
+            type: dropdown
+            
+        media_sets:
+            tab: 'offline.mall::lang.common.attachments'
+            label: 'offline.mall::lang.common.medias'
+            #prompt: 'offline.mall::lang.common.select_media'
+            span: full
+            type: partial
+            path: media_sets 
+            trigger:
+                action: show
+                field: media_set_id
+                condition: value[]
+
         weight:
             label: 'offline.mall::lang.product.weight'
             oc.commentPosition: ''

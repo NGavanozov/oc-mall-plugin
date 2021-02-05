@@ -237,6 +237,12 @@ tabs:
             type: partial
             path: image_sets
             tab: 'offline.mall::lang.common.attachments'
+        media_sets:
+            tab: 'offline.mall::lang.common.attachments'
+            label: 'offline.mall::lang.common.medias'
+            span: left
+            type: partial
+            path: media_sets            
         downloads:
             label: 'offline.mall::lang.common.downloads'
             oc.commentPosition: ''

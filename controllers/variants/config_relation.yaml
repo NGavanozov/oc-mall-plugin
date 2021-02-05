@@ -1,0 +1,12 @@
+# ===================================
+#  Relation Behavior Config
+# ===================================
+
+media_sets:
+    label: 'offline.mall::lang.common.medias'
+    view:
+        list: $/offline/mall/models/mediaset/columns.yaml
+        toolbarButtons: create|delete
+    manage:
+        list: $/offline/mall/models/mediaset/columns.yaml
+        form: $/offline/mall/models/mediaset/fields.yaml

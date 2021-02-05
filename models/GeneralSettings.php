@@ -77,5 +77,4 @@ class GeneralSettings extends Model
         return $this->getPagesByComponent('cart');
     }
 
-
 }

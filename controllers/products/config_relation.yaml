@@ -91,6 +91,17 @@ image_sets:
     manage:
         list: $/offline/mall/models/imageset/columns.yaml
         form: $/offline/mall/models/imageset/fields.yaml
+    deferredBinding: true
+
+media_sets:
+    label: 'offline.mall::lang.common.medias'
+    view:
+        list: $/offline/mall/models/mediaset/columns.yaml
+        toolbarButtons: create|delete
+    manage:
+        list: $/offline/mall/models/mediaset/columns.yaml
+        form: $/offline/mall/models/mediaset/fields.yaml
+    deferredBinding: true
 
 reviews:
     label: 'offline.mall::lang.common.review'

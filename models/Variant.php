@@ -11,6 +11,7 @@ use October\Rain\Database\Traits\Validation;
 use OFFLINE\Mall\Classes\Traits\CustomFields;
 use OFFLINE\Mall\Classes\Traits\HashIds;
 use OFFLINE\Mall\Classes\Traits\Images;
+use OFFLINE\Mall\Classes\Traits\Videos;
 use OFFLINE\Mall\Classes\Traits\PriceAccessors;
 use OFFLINE\Mall\Classes\Traits\ProductPriceAccessors;
 use OFFLINE\Mall\Classes\Traits\PropertyValues;
@@ -24,6 +25,7 @@ class Variant extends Model
     use Validation;
     use SoftDelete;
     use Images;
+    use Videos;
     use HashIds;
     use CustomFields;
     use UserSpecificPrice;
@@ -36,10 +38,10 @@ class Variant extends Model
     const MORPH_KEY = 'mall.variant';
 
     public $slugs = [];
-    public $nullable = ['image_set_id'];
+    public $nullable = ['image_set_id', 'media_set_id'];
     public $table = 'offline_mall_product_variants';
     public $dates = ['deleted_at'];
-    public $with = ['product.additional_prices', 'image_sets', 'prices', 'additional_prices'];
+    public $with = ['product.additional_prices', 'image_sets', 'prices', 'additional_prices', 'media_sets'];
     public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
     public $translatable = [
         'name',
@@ -68,6 +70,25 @@ class Variant extends Model
         'published'                    => 'boolean',
         'allow_out_of_stock_purchases' => 'boolean',
     ];
+    protected $fillable = [
+        'product_id',
+        'user_defined_id',
+        'image_set_id',
+        'media_set_id',
+        'stock',
+        'name',
+        'published',
+        'weight',
+        'length',
+        'width',
+        'height',
+        'allow_out_of_stock_purchases',
+        'mpn',
+        'gtin',
+        'description',
+        'description_short',
+    ];
+
     public $attachMany = [
         'temp_images' => File::class,
         'downloads'   => File::class,
@@ -75,6 +96,7 @@ class Variant extends Model
     public $belongsTo = [
         'product'    => Product::class,
         'image_sets' => [ImageSet::class, 'key' => 'image_set_id'],
+        'media_sets' => [MediaSet::class, 'key' => 'media_set_id'],
     ];
     public $hasMany = [
         'prices'                  => ProductPrice::class,
@@ -94,23 +116,7 @@ class Variant extends Model
         'customer_group_prices' => [CustomerGroupPrice::class, 'name' => 'priceable'],
         'additional_prices'     => [Price::class, 'name' => 'priceable'],
     ];
-    protected $fillable = [
-        'product_id',
-        'user_defined_id',
-        'image_set_id',
-        'stock',
-        'name',
-        'published',
-        'weight',
-        'length',
-        'width',
-        'height',
-        'allow_out_of_stock_purchases',
-        'mpn',
-        'gtin',
-        'description',
-        'description_short',
-    ];
+    
 
     public function afterSave()
     {
@@ -121,6 +127,11 @@ class Variant extends Model
         if ($this->image_set_id === null) {
             $this->createImageSetFromTempImages();
         }
+        /*
+        if ($this->media_set_id === null) {
+            $this->createMediaSetFromTempImages();
+        }
+        */
 
         $this->handlePropertyValueUpdates();
     }
@@ -224,6 +235,20 @@ class Variant extends Model
         ];
 
         $sets = Product::find(post('id', $this->product_id))->image_sets;
+        if ( ! $sets) {
+            return $null;
+        }
+
+        return $null + $sets->pluck('name', 'id')->toArray();
+    }
+
+    public function getMediaSetIdOptions()
+    {
+        $null = [
+            '' => '-- ' . trans('offline.mall::lang.image_sets.create_new'),
+        ];
+
+        $sets = Product::find(post('id', $this->product_id))->media_sets;
         if ( ! $sets) {
             return $null;
         }

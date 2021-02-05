@@ -1,0 +1,37 @@
+fields:
+
+    is_main_set:
+        label: 'offline.mall::lang.media_sets.is_main_set'
+        comment: 'offline.mall::lang.media_sets.is_main_set_comment'
+        span: left
+        type: switch
+
+    name:
+        label: 'offline.mall::lang.common.name'
+        span: right
+        type: text
+
+    media:
+        label: 'offline.mall::lang.media_sets.media'
+        type: repeater
+        titleFrom: 'offline.mall::lang.media_sets.media_form'
+        form:
+            fields:
+                is_video:
+                    label: 'offline.mall::lang.media_sets.is_video'
+                    comment: 'offline.mall::lang.media_sets.is_video_comment'
+                    span: left
+                    type: switch
+                image:
+                    label: 'offline.mall::lang.common.image'
+                    span: left
+                    type: mediafinder
+                    mode: image
+                    imageWidth: 200
+                    imageHeight: 200
+                video:
+                    label: 'offline.mall::lang.media_sets.video'
+                    comment: 'offline.mall::lang.media_sets.video_comment'           
+                    span: right
+                    type: mediafinder
+                    mode: file

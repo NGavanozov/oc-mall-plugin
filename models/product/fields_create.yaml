@@ -82,3 +82,11 @@ tabs:
             mode: image
             imageWidth: 260
             tab: 'offline.mall::lang.product.general'
+        #initial_media:
+        #    tab: 'offline.mall::lang.product.general'
+        #    label: 'offline.mall::lang.common.media'
+        #    span: auto
+        #    type: mediafinder
+        #    mode: image
+        #    imageWidth: 200
+           

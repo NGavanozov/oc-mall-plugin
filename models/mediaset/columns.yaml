@@ -1,0 +1,39 @@
+columns:
+
+    name:
+        label: 'offline.mall::lang.common.name'
+        type: text
+        require: 1
+        searchable: true
+        sortable: true
+
+    image:
+        label: 'offline.mall::lang.common.main_image'
+        type: partial
+        path: $/offline/mall/models/mediaset/_image.htm
+        require: 1
+        searchable: true
+        sortable: false
+        width: 50
+    
+    #video:
+    #    label: 'offline.mall::lang.common.video'
+    #    type: partial
+    #    path: $/offline/mall/models/mediaset/_video.htm
+    #    require: 1
+    #    searchable: true
+    #    sortable: false
+
+    #is_video:
+    #    label: 'offline.mall::lang.image_sets.is_main_set'
+    #    type: partial
+    #    path: $/offline/mall/models/imageset/_is_main_set.htm
+    #    searchable: true
+    #    sortable: true
+
+    is_main_set:
+        label: 'offline.mall::lang.image_sets.is_main_set'
+        type: partial
+        path: $/offline/mall/models/imageset/_is_main_set.htm
+        searchable: true
+        sortable: true

@@ -25,6 +25,7 @@ use OFFLINE\Mall\Classes\Traits\UserSpecificPrice;
 use RainLab\Translate\Models\Locale;
 use System\Models\File;
 
+
 /**
  * @SuppressWarnings(PHPMD.TooManyFields)
  */
@@ -135,17 +136,14 @@ class Product extends Model
         'file_session_required',
     ];
     public $table = 'offline_mall_products';
-    public $with = ['image_sets', 'prices'];
+    public $with = ['image_sets', 'prices', 'media_sets'];
     public $attachMany = [
         'downloads'      => File::class,
         'initial_images' => File::class,
     ];
     public $belongsTo = [
         'brand'             => Brand::class,
-        'group_by_property' => [
-            Property::class,
-            'key' => 'group_by_property_id',
-        ],
+        'group_by_property' => [Property::class, 'key' => 'group_by_property_id'],
     ];
     public $hasManyThrough = [
         'custom_field_options' => [
@@ -158,21 +156,23 @@ class Product extends Model
     public $morphMany = [
         'customer_group_prices' => [CustomerGroupPrice::class, 'name' => 'priceable'],
         'additional_prices'     => [Price::class, 'name' => 'priceable'],
-    ];
+    ];    
     public $hasMany = [
         'prices'                 => [ProductPrice::class, 'conditions' => 'variant_id is null'],
         'variants'               => Variant::class,
         'cart_products'          => CartProduct::class,
         'order_products'         => OrderProduct::class,
         'image_sets'             => ImageSet::class,
+        'media_sets'             => MediaSet::class,
         'property_values'        => PropertyValue::class,
         'reviews'                => Review::class,
         'discounts'              => Discount::class,
         'category_review_totals' => [CategoryReviewTotal::class, 'conditions' => 'variant_id is null'],
-        'files'                  => [ProductFile::class],
+        'files'                  => [ProductFile::class],        
     ];
     public $hasOne = [
         'latest_file' => [ProductFile::class, 'order' => 'created_at DESC'],
+        'main_media'  => MediaSet::class,
     ];
     public $belongsToMany = [
         'categories'      => [
@@ -600,6 +600,18 @@ class Product extends Model
             $fields->variants->path               = 'variants_unavailable';
             $fields->group_by_property_id->hidden = true;
         }
+
+        // hide image_set when use media_set
+        $use_media = GeneralSettings::get('use_media');
+        //dump($use_media);
+        if ($use_media) {
+            $this->hideField($fields, 'image_sets');
+            //$fields->image_sets->hidden = true;
+        } else {
+            $this->hideField($fields, 'media_sets');
+            //$fields->media_sets->hidden = true;
+        }
+
     }
 
     /**
@@ -620,4 +632,5 @@ class Product extends Model
             'variant' => 'offline.mall::lang.variant.method.variant',
         ];
     }
+
 }
